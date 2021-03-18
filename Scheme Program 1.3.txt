@@ -1,0 +1,65 @@
+Define a procedure that takes 3 numbers as arguments and returns the sum of the squares of the larger 2 numbers?
+----------------------------------------------------------------------------------------------------------------
+
+(define (greatest a b p) (cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))))
+                        
+(define (secondG a b p) (cond ((=(greatest a b p) a)(cond ((> b p)b)(else p)))
+                              (else(cond ((=(greatest a b p) b)(cond((> a p) a)(else p)))(else(cond((> a b)a)(else b)))))))
+  
+(display(greatest 3 5 2)) 
+(display " ")
+(display(secondG 3 5 2))
+(display " ")
+(define(square x)(* x x))
+
+(display(square (greatest 3 5 2)))
+(display " ")
+(display(square (secondG 3 5 2)))
+
+(display " ")
+(display " ")
+(display " ")
+
+(define (sum_sqr_two_large x y)(+ (square x) (square y)))
+
+(display(sum_sqr_two_large (greatest 3 5 2) (secondG 3 5 2)))
+
+==> 34
+----------------------------------------------------------------------------------------------------------------------------------------
+
+(define (greatest a b p) (cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))))
+                        
+(define (secondG a b p) (cond ((=(greatest a b p) a)(cond ((> b p)b)(else p)))
+                              (else(cond ((=(greatest a b p) b)(cond((> a p) a)(else p)))(else(cond((> a b)a)(else b)))))))
+  
+(define(square x)(* x x))
+
+(define (sum_sqr_two_large x y)(+ (square x) (square y)))
+
+
+(display(sum_sqr_two_large (greatest -3 -6 3) (secondG -3 -6 3)))
+
+==> 18
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+Using one single method:-
+
+
+(define (sum a b p)
+(+ (* (cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))) 
+  (cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))))
+(* (cond ((=(cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))) a)(cond ((> b p)b)(else p)))
+                              (else(cond ((=(cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))) b)(cond((> a p) a)(else p)))(else(cond((> a b)a)(else b))))))
+  (cond ((=(cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))) a)(cond ((> b p)b)(else p)))
+                              (else(cond ((=(cond ((> a b)(cond ((> a p) a)(else p)))
+                            (else (cond ((> b p) b)(else p)))) b)(cond((> a p) a)(else p)))(else(cond((> a b)a)(else b)))))))))
+ 
+
+(display(sum 7 -3 2))  ==> 53
