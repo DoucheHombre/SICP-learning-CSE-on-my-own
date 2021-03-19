@@ -1,0 +1,28 @@
+Square roots by Newtons methods
+-------------------------------
+
+(define (goodenough? guess number)
+    (<(abs(-(square guess) number)) 0.001))
+
+(define (square x)(* x x))
+
+(define (abs x)(if(< x 0) (- x) x))
+
+(define (improve guess number)
+                (average guess (/ number guess)))
+
+(define (average x y) (/ (+ x y) 2))
+            
+(define (sqrt-iter guess number)
+    (if(goodenough? guess number)
+                guess
+                (sqrt-iter (improve guess number) 
+                           number)))
+                       
+(define (sqrt x) (sqrt-iter 1.0 x))
+
+
+(display (sqrt (+ 100 37)))
+
+ o.p = 11.704699917758145
+
