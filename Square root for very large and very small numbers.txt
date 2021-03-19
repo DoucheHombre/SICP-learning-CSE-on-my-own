@@ -22,4 +22,4 @@ Design a square-root procedure that uses this kind of end test. Does this work b
 (define (sqrt x)
   (sqrt-iter 1.0 x))
 
-(display (sqrt 0.09))
+(display (sqrt 0.09)) ==> 0.3
