@@ -1,0 +1,23 @@
+Square root using Lexical structure for very large and small numbers
+----------------------------------------------------------------------
+
+(define (sqrt x)
+
+(define (good-enough? previous-guess guess)
+  (< (abs (/ (- guess previous-guess) guess)) 0.00000000001))
+
+(define (sqrt-iter guess)
+  (if (good-enough? guess (improve guess))
+      guess
+      (sqrt-iter (improve guess))))
+
+(define (improve guess)
+  (average guess (/ x guess)))
+
+(define (average x y)
+  (/ (+ x y) 2))
+
+(sqrt-iter 1.0))
+
+
+(display (sqrt 0.07)) ==> 0.2645751311064595
