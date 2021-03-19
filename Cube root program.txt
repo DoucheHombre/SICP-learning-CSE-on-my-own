@@ -1,0 +1,24 @@
+To find cube root
+------------------
+
+(define (improve guess number)
+                   (/ (+(/ number (square guess)) (* 2 guess)) 3))
+               
+(define (cube-rt-itr guess number)
+    (if(goodenough? guess number)
+                    guess
+                    (cube-rt-itr (improve guess number) number)))
+
+(define (goodenough? guess number)
+    (< (abs (- (cube guess) number)) 0.00000001))
+
+(define (cube x) (* x x x))
+
+(define (abs x) (if(< x 0) 
+                    (- x) 
+                       x))
+                   
+(define (cube-rt number)
+            (cube-rt-itr 1.0 number))
+        
+(display (cube-rt 5))
